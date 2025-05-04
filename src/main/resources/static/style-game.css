@@ -1,0 +1,258 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #5d9cec, #3a7bd5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.game-container h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.question-text {
+    color: #3498db;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.answer-btn {
+    background: #403f3f;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.answer-btn:hover {
+    background: #0e0e0e;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.money-icon, .coin, .bitcoin-icon {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: float 8s infinite ease-in-out;
+    width: 50px;
+    height: 50px;
+    z-index: 0;
+}
+
+.money-icon.bill1 {
+    top: 5%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.money-icon.bill2 {
+    top: 15%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.money-icon.bill3 {
+    top: 25%;
+    left: 15%;
+    animation-delay: 2s;
+}
+
+.money-icon.bill4 {
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.coin.coin5 {
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 0.5s;
+}
+
+.coin.coin6 {
+    top: 35%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.coin.coin7 {
+    top: 45%;
+    left: 20%;
+    animation-delay: 2.5s;
+}
+
+.coin.coin8 {
+    bottom: 30%;
+    right: 20%;
+    animation-delay: 3.5s;
+}
+
+.bitcoin-icon.icon9 {
+    top: 55%;
+    left: 25%;
+    animation-delay: 4s;
+}
+
+.bitcoin-icon.icon10 {
+    top: 65%;
+    right: 25%;
+    animation-delay: 4.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(5deg);
+    }
+}
+
+/* Модальное окно */
+/* Стили для модального окна */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-box {
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.4s ease-out;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Контейнер для анимации */
+.animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Стили для падающих элементов */
+.falling-item {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    animation: fall 3s linear forwards;
+    opacity: 0.7;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Стили для кнопки */
+.modal-btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    margin-top: 20px;
+    outline: none;
+}
+
+/* Стили для победы */
+.win-modal {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.win-btn {
+    background: white;
+    color: #27ae60;
+}
+
+.win-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Стили для поражения */
+.lose-modal {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.lose-btn {
+    background: white;
+    color: #c0392b;
+}
+
+.lose-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+}

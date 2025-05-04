@@ -1,0 +1,168 @@
+/* room-styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #5d9cec, #3a7bd5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.room-container h2 {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.room-container h4 {
+    color: #3498db;
+    margin: 15px 0;
+}
+
+.stats {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.stats p {
+    color: #2c3e50;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.divider {
+    border-top: 2px dashed #3498db;
+    margin: 25px 0;
+    opacity: 0.5;
+}
+
+.start-btn {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.start-btn:hover {
+    background: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.start-btn svg {
+    margin-right: 10px;
+}
+
+/* Анимированные купюры */
+.money-bill {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: float 8s infinite ease-in-out;
+    width: 80px;
+    height: 80px;
+    z-index: 0;
+}
+
+.money-bill.bill1 {
+    top: 5%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.money-bill.bill2 {
+    top: 15%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.money-bill.bill3 {
+    top: 25%;
+    left: 15%;
+    animation-delay: 2s;
+}
+
+.money-bill.bill4 {
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.money-bill.bill5 {
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 0.5s;
+}
+
+.money-bill.bill6 {
+    top: 35%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.money-bill.bill7 {
+    top: 45%;
+    left: 20%;
+    animation-delay: 2.5s;
+}
+
+.money-bill.bill8 {
+    bottom: 30%;
+    right: 20%;
+    animation-delay: 3.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(5deg);
+    }
+}
+
+/* Иконка призыва */
+.call-to-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.call-to-action svg {
+    margin-right: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

@@ -1,0 +1,152 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #5d9cec; /* Светло-синий фон */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    z-index: 1;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #2c3e50; /* Темно-синий текст */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #2c3e50; /* Темно-синий текст */
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    background: #fff;
+    color: #333;
+}
+
+.form-group .error {
+    color: #e74c3c; /* Красный текст для ошибок */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: #3498db; /* Синий фон для кнопок */
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #2980b9; /* Темно-синий фон при наведении */
+}
+
+/* Стили для SVG-изображений монет */
+.money-icon {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: float 6s infinite ease-in-out;
+}
+
+.money-icon.coin {
+    width: 40px;
+    height: 40px;
+}
+
+/* Позиции и анимации для монет */
+.money-icon.coin1 {
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.money-icon.coin2 {
+    top: 25%;
+    left: 80%;
+    animation-delay: 1s;
+}
+
+.money-icon.coin3 {
+    top: 70%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.money-icon.coin4 {
+    top: 80%;
+    left: 75%;
+    animation-delay: 3s;
+}
+
+.money-icon.coin5 {
+    top: 40%;
+    left: 5%;
+    animation-delay: 0.5s;
+}
+
+.money-icon.coin6 {
+    top: 50%;
+    left: 90%;
+    animation-delay: 1.5s;
+}
+
+.money-icon.coin7 {
+    top: 20%;
+    left: 50%;
+    animation-delay: 2.5s;
+}
+
+.money-icon.coin8 {
+    top: 65%;
+    left: 60%;
+    animation-delay: 3.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fadbd8;
+    border: 1px solid #e74c3c;
+    border-radius: 5px;
+}
