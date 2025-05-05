@@ -58,6 +58,37 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.helper-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 40px;
+}
+
+.helper-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.helper-btn i {
+    margin-right: 10px;
+}
+
+.helper-btn:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 .money-icon, .coin, .bitcoin-icon {
     position: absolute;
     pointer-events: none;
@@ -135,6 +166,19 @@ body {
     50% {
         transform: translateY(-25px) rotate(5deg);
     }
+}
+
+
+.current-amount {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: -50px; /* Сдвиг наверх */
+    right: 10px; /* Отступ справа */
+    font-size: 18px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Модальное окно */

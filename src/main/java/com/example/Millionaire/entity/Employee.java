@@ -29,7 +29,7 @@ public class Employee {
     private int wins;
 
     @Column(name = "capital")
-    private Integer capital;
+    private Integer capital = 0;
 
     public int getId() {
         return id;

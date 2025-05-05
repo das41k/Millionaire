@@ -25,4 +25,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee != null;
     }
 
+    @Override
+    @Transactional
+    public void updateEmployee(int employeeId, Integer employeeCapital, int employeeWins) {
+        employeeDAO.updateEmployee(employeeId, employeeCapital, employeeWins);
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployee(String name, String password) {
+        Employee employee = employeeDAO.getEmployee(name, password);
+        return employee;
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployeeById(int employeeId) {
+        return employeeDAO.getEmployeeById(employeeId);
+    }
+
+
 }

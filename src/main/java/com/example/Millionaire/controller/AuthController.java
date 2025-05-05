@@ -7,21 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@SessionAttributes("employee") // Добавляем аннотацию для хранения employee в сессии
 public class AuthController {
 
     @Autowired
     private EmployeeService employeeService;
 
+    @ModelAttribute("employee") // Инициализация объекта employee для сессии
+    public Employee setUpEmployee() {
+        return new Employee();
+    }
+
     @RequestMapping("/")
     public String showAuth(Model model, @ModelAttribute("errorMessage") String errorMessage) {
-        Employee employee = new Employee();
-        model.addAttribute("employee", employee);
+        if (!model.containsAttribute("employee")) {
+            model.addAttribute("employee", new Employee());
+        }
         if (errorMessage != null) {
             model.addAttribute("errorMessage", errorMessage);
         }
@@ -39,11 +44,8 @@ public class AuthController {
         }
 
         if ("Регистрация".equals(action)) {
-            redirectAttributes.addFlashAttribute("employee", employee);
             return "redirect:/register";
-        }
-        else if ("Вход".equals(action)) {
-            redirectAttributes.addFlashAttribute("employee", employee);
+        } else if ("Вход".equals(action)) {
             return "redirect:/login";
         }
 
@@ -51,10 +53,18 @@ public class AuthController {
     }
 
     @RequestMapping("/register")
-    public String register(@ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes) {
+    public String register(@ModelAttribute("employee") Employee employee,
+                           RedirectAttributes redirectAttributes,
+                           Model model) {
         boolean resultCheck = employeeService.checkPositiveData(employee.getName(), employee.getPassword());
         if (!resultCheck) {
+            // Устанавливаем начальные значения
+            employee.setWins(0);
+            employee.setCapital(0);
             employeeService.addEmployee(employee);
+            // Получаем свежие данные из БД
+            Employee dbEmployee = employeeService.getEmployee(employee.getName(), employee.getPassword());
+            model.addAttribute("employee", dbEmployee);
             return "room";
         } else {
             redirectAttributes.addFlashAttribute("errorMessage", "Данный пользователь уже есть в системе!");
@@ -63,12 +73,16 @@ public class AuthController {
     }
 
     @RequestMapping("/login")
-    public String login(@ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes) {
+    public String login(@ModelAttribute("employee") Employee employee,
+                        RedirectAttributes redirectAttributes,
+                        Model model) {
         boolean resultCheck = employeeService.checkPositiveData(employee.getName(), employee.getPassword());
         if (resultCheck) {
+            // Получаем полные данные из БД и сохраняем в сессию
+            Employee dbEmployee = employeeService.getEmployee(employee.getName(), employee.getPassword());
+            model.addAttribute("employee", dbEmployee);
             return "room";
         } else {
-            System.out.println(employee.getName() + employee.getPassword());
             redirectAttributes.addFlashAttribute("errorMessage", "Неверный логин или пароль");
             return "redirect:/";
         }
