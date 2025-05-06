@@ -19,24 +19,43 @@
         <input type="hidden" name="currentAmount" value="${currentAmount}"/>
         <div class="answer-grid">
             <c:forEach var="answer" items="${question.answers}">
-                <button type="submit" name="answerId" value="${answer.id}"  class="answer-btn">
-                        ${answer.text}
-                </button>
+                <c:choose>
+                    <c:when test="${disabledAnswers.contains(answer.id)}">
+                        <button type="button" class="answer-btn disabled" style="background: #e74c3c; color: white; cursor: not-allowed; opacity: 0.7;" disabled>
+                                ${answer.text}
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button type="submit" name="answerId" value="${answer.id}" class="answer-btn">
+                                ${answer.text}
+                        </button>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
         </div>
     </form>
 
     <div class="helper-buttons">
-        <button class="helper-btn fifty-fifty">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6H7v-2h4V7h2v4h4v2h-4v6z"/>
-            </svg>
-        </button>
-        <button class="helper-btn skip-question">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
-            </svg>
-        </button>
+        <c:if test="${not fiftyFiftyUsed}">
+            <form action="/game-fifty" method="post" style="display: inline;">
+                <input type="hidden" name="currentAmount" value="${currentAmount}"/>
+                <button type="submit" class="helper-btn fifty-fifty">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6H7v-2h4V7h2v4h4v2h-4v6z"/>
+                    </svg>
+                </button>
+            </form>
+        </c:if>
+        <c:if test="${not skipUsed}">
+            <form action="/game-skip" method="post" style="display: inline;">
+                <input type="hidden" name="currentAmount" value="${currentAmount}"/>
+                <button type="submit" class="helper-btn skip-question">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                </button>
+            </form>
+        </c:if>
     </div>
 </div>
 
